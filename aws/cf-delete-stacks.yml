@@ -1,0 +1,10 @@
+- hosts: localhost
+  gather_facts: no
+  connection: local
+  tasks:
+    - name: Delete Stacks
+      with_items: "{{ stacks }}"
+      cloudformation:
+        stack_name: "{{ item }}"
+        state: "absent"
+        region: "{{ region }}"
